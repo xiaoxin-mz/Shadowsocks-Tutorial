@@ -8,6 +8,14 @@
 >
 > 如果工程师朋友们需要加速git克隆速度可以查看这篇文章[给小白的git配置shadowsocks代理加速教程](./git/git_shadowsocks_readme.md)
 
+# pip版本太低，升级不了时，用下边方法
+1. 先卸载安装的python-pip
+sudo yum remove python-pip
+
+2. 下载get-pip.py文件
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+sudo python get-pip.py
+
 # 前言
 
 为什么要做这个库？因为有句话说“不会翻墙的程序员不是好程序员”，但是某些原因，翻墙可是越来越难了，我之前是用某灯，但是自从上个月开始某灯也不稳定了；我还以为可以和某灯相宿相飞一段时间的，后来就投靠了Shadowsocks了，为什么会选择Shadowsocks呢，因为可以自己搭建服务器，不再受牵制，而且由于是个人服务器被封IP的几率也不会很大；当然你也可以和自己信任的人共享使用，但是Shadowsocks的教程网络上真是参次不齐，很容易误导那些只想翻墙而不是要了解它原理的人，所以我就蹦出个想法：做个几乎是一键式的傻瓜Shadowsocks（以下简称ss）搭建教程给小白们，让大家都能共享自由的互联网。
