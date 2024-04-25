@@ -1,8 +1,4 @@
-[中文版本](./README.md)
-
-> Note: This article was translated by ChatGPT and reviewed by myself. We apologize for any semantic inaccuracies.
->
-> This article is optimized and adjusted for the Chinese network. Some parts of the content may not be relevant for readers outside of China.
+[🇨🇳中文版本](./README.md)
 
 **[Table of Contents](https://github.com/zhaoweih/Shadowsocks-Tutorial/wiki/目录)**
 
@@ -23,18 +19,18 @@ Why create this library? Because there is a saying that "a programmer who cannot
 As the saying goes, "the beginning is always the hardest." It's true that buying a VPS server isn't particularly difficult, but accepting it can be a bit challenging. When I first tried to purchase a server, I was a novice who had never bought one before and had no idea where to start. But now you can rest assured that, based on my personal experience, Vultr and DigitalOcean are two service providers that allow you to deploy and destroy servers at any time, and they charge by the hour. It costs $5 per month, or roughly $0.007 per hour. Even if you create a server and its IP is blocked by the Great Firewall, you can simply delete it and it will only cost you $0.1. As a poor student, I can definitely afford this. So, what are you waiting for?
 
 ### 1. Register and Log In
-[<img src="./images/logo_onwhite.svg" alt="alt text" title="vultr" style="zoom: 50%;" />](https://www.vultr.com/?ref=9091308-8H)
-I recommend using Vultr for this tutorial. You can sign up using this referral link: https://www.vultr.com/?ref=9091308-8H
+[<img src="./images/logo_onwhite.svg" alt="alt text" title="vultr" style="zoom: 50%;" />](https://www.vultr.com/?ref=7370522)
+I recommend using Vultr for this tutorial. You can sign up using this referral link: https://www.vultr.com/?ref=7370522
 
 Why do I recommend Vultr? Because they have servers in Japan with low latency and low packet loss. After registering and logging in, you need to recharge your account with at least $5. You can use PayPal to bind your domestic bank card and recharge with a minimum of $5, or you can use Alipay, which requires a minimum recharge of $10.
 
-![](./images/1.png)
+![](./images/make_a_payment.png)
 
 ### 2. Deploying the Server
 
 Step 1: On your personal page, click on "Products" and then click on the "+" button on the right side to add a server.
 
-![](./images/2.png)
+![](./images/choose_server.png)
 
 Select "Cloud Compute."
 
@@ -70,7 +66,7 @@ Step 6: Wait for the server to start up. When the Status turns green and shows "
 
 Step 7: Copy the IP address and password. They will be useful later.
 
-![](./images/8.png)
+![](./images/server_info.png)
 
 Step 8: After the server has started up, it's recommended to test if the IP address has been blocked. Open the command prompt or terminal, and type in "ping" followed by your IP address. For example, if the IP address of your server is 8.8.8.8, type in "ping 8.8.8.8". If the return message is as shown in the image below, then the IP is available. Occasionally, a "request timeout" is also acceptable, which means that some packets have been dropped. However, if "request timeout" persists, you should delete the server and deploy it again.
 
@@ -177,6 +173,15 @@ You may need to wait for a while, but once the installation is complete, you wil
 I recommend taking a screenshot of this page so you don't forget the important information: your server's IP address, server port, password, and encryption method.
 
 ![](./images/libev/7.png)
+
+Finally, you need to disable the firewall on your system. Paste the following command and enter.
+
+```bash
+systemctl stop firewalld
+systemctl disable firewalld
+```
+
+## Download Client
 
 If you have followed my instructions up to this point, then you should have successfully installed the server-side of SS. However, in order to use SS, you will also need to install the client-side software on your computer or mobile device. Below are the download links for various platforms (I have personally used SS on Windows, MAC, Android, and IOS, and the steps for using it are similar for each platform.):
 
@@ -313,56 +318,6 @@ Finally, our task is completed here, but if you want to optimize the server conn
 >
 > After installation, the script will prompt to restart VPS, enter y and press Enter to restart.
 
-# Update
-
-## 201210 Update
-
-Tips: If you want to use domestic servers (such as Alibaba Cloud, Tencent Cloud, etc.), it is recommended to [reinstall the system with a one-click DD system](https://ssr.tools/693) to get a clean system before setting up Shadowsocks. Otherwise, you may receive a warning email.
-
-## 190518 Update
-
-[Add instructions on installing EPEL on AWS #8](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues/8)
-
-## 190203 Update
-
-If you want to test the download and running speed of your server, you can check out this article: [Article](https://teddysun.com/444.html)
-
-> Just run this command:
->
-> ```bash
-> wget -qO- bench.sh | bash
-> ```
-
-
-
-Here are some speed test results of my servers. I hope it's helpful for you to choose a server:
-
-- DigitalOcean Singapore, $5/month: 
-
-  ![](./images/do_singapore.png)
-
-- VPSServer Tokyo, $4.9/month: 
-
-  ![](./images/vpsserver_jp.png)
-
-- HostUS Hong Kong, $2.95/month: 
-
-  ![](./images/hostus_hk.png)
-
-- AWS Korea, free for one year with EC2:
-
-![](./images/aws_kr.png)
-
-## Update on 2018/06/24
-
-If you want to customize your PAC rules, that is, if you want to visit a website that is not in the PAC directory, you can add it yourself. For example, if I want to add GitHub to the PAC custom protocol, the format is as follows:
-
-```
-||github.com
-```
-
-After adding it, **remember to restart Shadowsocks to take effect**. URLs that contain github.com, such as api.github.com and github.com/zhaoweih, will use the server IP.
-
 # Q&A
 
 Here are some questions collected from emails:
@@ -373,13 +328,9 @@ You can try to install wget by referring to this article: https://www.wn789.com/
 
 **[Resolved] 2. Problem: When accessing Google Scholar, it prompts: "We are sorry, but your computer or network may be sending automated queries. To protect our users, we can't process your request right now."**
 
-Because Google has its own anti-proxy spider mechanism, many VPS IPs will be detected by Google as proxies. If you encounter this situation, you can switch to another server. If there are no other servers available, you can use the [Google Scholar Mirror](https://lai.yuweining.cn/archives/2112/).
+Because Google has its own anti-proxy spider mechanism, many VPS IPs will be detected by Google as proxies. If you encounter this situation, you can switch to another server. If there are no other servers available, you can use the **Google Scholar Mirror.**
 
-**[Resolved] 3. Install EPEL repository failed error on AWS EC2**
-
-Refer to this article: [http://blog.openpilot.cc/archives/aws-ec2%E6%8A%A5%E9%94%99install-epel-repository-failed%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/](http://blog.openpilot.cc/archives/aws-ec2报错install-epel-repository-failed的解决办法/)
-
-**[Resolved] 4. [Error] Failed to install python**
+**[Resolved] 3. [Error] Failed to install python**
 
 The problem of unable to install due to CentOS 7 being not selectable in the previous article can be resolved by trying to install on **Debian10x64** system [#27](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues/27).
 
